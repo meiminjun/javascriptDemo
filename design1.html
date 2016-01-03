@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	
+</head>
+<body>
+	<input type="button" id='btn' value="点击我">
+	<script>
+		// javascript 定义接口的三种方式
+		// 1 注解描述的方式
+		// 优点：
+		var CompositeTmpl = function() {
+		
+			this.remove = function(obj) {
+
+			}
+		}
+
+		CompositeTmpl.prototype.add = function() {
+
+		}
+
+		var c1 = new CompositeTmpl();
+		var c2 = new CompositeTmpl();
+		alert(c1.add == c2.add);
+	</script>
+</body>
+</html>

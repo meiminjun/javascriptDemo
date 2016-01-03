@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	
+</head>
+<body>
+	<input type="button" id='btn' value="点击我">
+	<script>
+		// 一、接口类
+		// 参数1：接口名字
+		// 参数2：接收方法名称的集合(数组)
+		var Interface = function(name,methods) {
+			// 判断接口参数个数
+			if(arguments.length != 2) {
+				throw new Error('this instance interface constructor arguments must be 2 length');
+			}
+			this.name = name;
+			this.methods = []; // 定义一个空数组对象 等待接收methods 里的元素(方法名字)
+			for(var i = 0 ,len = methods.length;i<len;i++) {
+				if(typeof methods[i]  !== 'string') {
+					throw new Error("the interface method name is error");
+				}
+				this.methods.push(methods[i]);
+			}
+		}
+		// 二、准备工作
+		// 1、实例化接口对象
+		var CompositeInterface = new Interface('CompositeInterface',['add','remove']);
+		var FormItemInterface = new Interface('FormItemInterface',['update','select']);
+
+		// 2、具体的实现类
+		var CompositeImpl = function() {
+		}
+		// 3、实现接口的方法
+		CompositeImpl.prototype.add = function() {
+			alert('add');
+		}
+		CompositeImpl.prototype.remove = function() {
+			alert('remove');
+		}
+		CompositeImpl.prototype.update = function() {
+			alert('update');
+		}
+		CompositeImpl.prototype.select = function() {
+			alert('select');
+			
+		}
+
+		// 三、检验接口里的方法
+		// 如果检验方法通过 不做任何操作
+		// 如果检验方法不通过  抛出异常
+		// 这个方法的目的  就是检测方法的
+		Interface.ensureImplements = function(object) {
+			// 如果检测方法接收的参数小于2 参数传递失败！
+			if(arguments.length < 2) {
+				throw new Error('Interface ensureImplements methods constructor arguments must be >= 2!');
+			}
+			// 获得接口实例对象
+			for(var i = 1,len = arguments.length;i<len;i++) {
+				var instanceInterface = arguments[i];
+				if(instanceInterface.constructor !== Interface) {
+					throw new Error('the arguments constructor not be Interface class');
+				}
+				// 循环接口实例对象里面的每一个方法
+				for(var j = 0;j<instanceInterface.length;j++) {
+					// 用一个零时变量接收每一个方法的名字
+					var methodName = instanceInterface.methods[j];
+					if(!object[methodName] || typeof object[methodName] !== 'function') {
+						throw new Error('the method name '+methodName+' is not found!');
+					}
+				}
+			}
+		}
+		var c1 = new CompositeImpl();
+		Interface.ensureImplements(c1,CompositeInterface,FormItemInterface);
+		c1.add();
+	</script>
+</body>
+</html>

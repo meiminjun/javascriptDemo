@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	
+</head>
+<body>
+	<script>
+		// 第二种方式
+		// 属性检测方式
+
+		var CompositeTmpl = function() {
+			// 显示的在类的内部 接收所有实现的接口
+			// 一般来说 在类的内部定义一个数组(名字要固定)
+			this.implementsInterfaces = ['Composite','FormItem'];
+
+		}
+		CompositeTmpl.prototype.add = function() {
+			alert('add');
+		}
+		CompositeTmpl.prototype.remove = function() {
+
+		}
+		CompositeTmpl.prototype.select = function() {
+
+		}
+
+		function CheckCompositeTmpl(instance) {
+			// 判断当前对象是否实现了所有接口
+			if(!IsImplements(instance,'Composite','FormItem')) {
+				throw new Error('Object is not implement a required interface');
+			}
+		}
+
+		// 公用的具体检测的方法
+		// 这个方法的主要目的：就是判断 实例对象 有没有实现相关接口
+		function IsImplements(object) {
+			for (var i = 1;i<arguments.length;i++) {
+				var interfaceName = arguments[i];
+				// 判断此方法到底成功  还是失败
+				var interfaceFound = false;
+				for(var j = 0;j<object.implementsInterfaces.length;j++) {
+					if(object.implementsInterfaces[j] == interfaceName) {
+						interfaceFound = true;
+						break;
+					}
+				}
+				if(!interfaceFound) {
+					return false;
+				}
+				return true;
+			}
+		}
+		var c1 = new CompositeTmpl();
+		CheckCompositeTmpl(c1);
+		c1.add();
+	</script>
+</body>
+</html>

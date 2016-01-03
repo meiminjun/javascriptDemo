@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	
+</head>
+<body>
+	<input type="button" id='btn' value="点击我">
+	<script>
+		// 模拟jquery 底层链式编程
+		var a = 10;
+		(function(window,undefined){
+			function _$(arguments) {
+				var idselect = /#\w+/;
+				this.dom;
+				if(idselect.test(arguments[0])) {
+					this.dom = document.getElementById(arguments[0].substring(1));
+				}else {
+					throw new Error('arguments is error!');
+				}
+			}
+
+			Function.prototype.method = function(methodName,fn) {
+				// 这个this 指向_$(谁调用就指向谁)
+				this.prototype[methodName] = fn;
+				return this;
+			}
+
+			// 添加公共方法
+			_$.prototype = {
+				constructor:_$,
+				addEvent:function(type,fn) {
+					alert('addEvent');
+					if(window.addEventListener){
+						this.dom.addEventListener(type,fn);
+					}else if(window.attachEventListener) {
+						this.dom.attachEvent('on'+type,fn);
+					}
+					return this;
+				},
+				setStyle:function(prop , value) {
+					debugger;
+					this.dom.style[prop] = value;
+					alert('setStyle');
+					return this;
+				}
+			}
+
+			window.$ = _$;
+			_$.onReady = function(fn) {
+				window.$ = function() {
+					return new _$(arguments);
+				}
+				debugger;
+				fn();
+				// 实现链式编程
+				_$.method('addEvent',function() {
+					alert("nothing to do");
+				}).method('setStyle',function() {
+
+				});
+			};
+		})(window);
+
+		$.onReady(function() {
+			// $("#btn").addEvent().setStyle();
+			var btn = $("#btn");
+			alert(btn.dom);
+			btn.addEvent('click',function() {
+				alert('我被点击了');
+			}).setStyle('background','red');
+		});
+
+	</script>
+</body>
+</html>
