@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	
+</head>
+<body>
+	<input type="button" id='btn' value="点击我">
+	<script >
+		var PAWA = {};
+		PAWA.Base = (function(){
+			var uniqInstance;
+			function init() {
+				var a1 = 10;
+				var a2 = true;
+				var fn1 = function () {  
+					alert("fn1");
+				};
+				var fn2 = function() {
+					alert("fn2");
+				};
+				return {
+					attr1:a1,
+					attr2:a2,
+					method1: function() {
+						fn1();
+					},
+					method2: function() {
+						fn2();
+					}
+				}
+			}
+			return {
+				getInstance : function() {
+					if(!uniqInstance) {
+						uniqInstance = init();
+					}
+					return uniqInstance;
+				}
+			}
+		})();
+
+		console.log(PAWA.Base.getInstance().attr1);
+
+	</script>
+</body>
+</html>
