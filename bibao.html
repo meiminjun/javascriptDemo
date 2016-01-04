@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	
+</head>
+<body>
+	<input type="button" id='btn' value="点击我">
+	<script>
+		// 闭包
+		function f(){
+		  　　var n = 999;
+		  　　function f1(){
+		   　　 alert(n+=1);
+		 　　 }
+		 　　 return f1;
+		　　}
+		　　var result = f();
+		　　result(); // 1000
+		　　result(); // 1001
+		　　result(); // 1002
+			
+	</script>
+</body>
+</html>

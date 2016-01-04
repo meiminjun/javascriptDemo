@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	
+</head>
+<body>
+	<input type="button" id='btn' value="点击我">
+	<script>
+		/* -- 封装 -- */
+	　　var _packaging =function(){
+	   　　//私有属性和方法
+	   　　var name ='Darren';
+	   　　var method1 =function(){
+	    　　  //...
+	   　　};
+	   　　//特权属性和方法
+	   　　this.title ='JavaScript Design Patterns' ;
+	   　　this.getName =function(){
+	    　　  return name;
+	   　　};
+	　　};
+	　　//共有静态属性和方法
+	　　_packaging._name ='Darren code';
+	　　_packaging.alertName =function(){
+	   　　alert(_packaging._name);
+	　　};
+	　　//共有属性和方法
+	　　_packaging.prototype = {
+	   　　init:function(){
+	      　　//...
+	   　　}
+	　　};
+		// ------------------------实现-----------------------------------
+		console.log(_packaging);
+		// 调用静态属性和方法
+		alert(_packaging._name);
+		_packaging.alertName();
+		// 实例化对象
+		var package = new _packaging();
+		console.log(package);	
+
+		//
+
+	</script>
+</body>
+</html>

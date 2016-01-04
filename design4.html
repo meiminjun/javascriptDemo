@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	
+</head>
+<body>
+	<input type="button" id='btn' value="点击我">
+	<script>
+		var PAWA = {};
+		PAWA.single = (function() {
+			"use strict"
+			var name = 111;
+			var test = function(age) {
+				return age;
+			};
+			return {
+				name:name,
+				test:test
+			};
+		})();
+		alert(PAWA.single.name);
+		alert(PAWA.single.test(12));
+	</script>
+</body>
+</html>
