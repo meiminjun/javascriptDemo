@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>测试</title>
+	
+</head>
+<body>
+	<div id="div1">1111</div>
+	<div id="div2">222</div>
+	<div id="div3">333</div>
+	<script>
+		// 门面模式
+		
+		var div1 = document.getElementById('div1');
+		var div2 = document.getElementById('div2');
+		var div3 = document.getElementById('div3');
+
+		var arr = [div1,div2,div3];
+		var prop = 'background';
+		var value = 'black';
+		// setStyle(arr,prop,value);
+
+		function setStyle(eles,prop,value) {
+			for(var i = 0;i<eles.length;i++) {
+				var dom = eles[i];
+				dom.style[prop]=value;
+			}
+		}
+
+		var options = {
+			background:'red',
+			width:'300px',
+			height:'500px'
+		};
+
+		setCss(options);
+		function setCss(options) {
+			for (x in options) {
+				if(options.hasOwnProperty(x)) {
+					setStyle(arr,x,options[x]);
+				}
+			}
+		}
+	</script>
+</body>
+</html>

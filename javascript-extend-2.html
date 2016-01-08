@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>继承</title>
+	<script type="text/javascript" >
+		// 原型继承
+		function Person(name) {
+			this.name = name;
+		}
+
+		Person.prototype.getName = function() {
+			return this.name;
+		};
+
+		function Student(name,age) {
+			// Person.call(this,name);	// 将Person对象代替this
+			Person.apply(this,arguments);
+			this.age = age;
+		}
+
+		console.log(new Person("张三"));
+		console.log(new Student("张四","25"));
+
+
+		// -------------------普通常用的------------------
+		// Student.prototype = new Person();   // 这个会将构造函数本身的对象传递过去，造成资源浪费，所以使用extend的方法
+		// console.log(new Student("张五","36"));  // 这里的原型指向的是Person,注释以下部分可以看出
+
+		// Student.prototype.constructor = Student; // 将Student 的原型指向自己
+		// console.log(new Student("张六","40"));
+
+		// Student.prototype.getAge = function() {
+		// 	return this.age;
+		// };
+
+		// console.log(new Student("王五","26"));
+
+		//-----------------利用空对象作为中介----------------
+		// 封装继承函数
+		function extend(Child,Parent) {
+			var F = function() {};
+			debugger;
+			console.log(Child);
+			F = Parent.prototype;
+			var f = new F();
+			Child.prototype = f;
+			Child.prototype.constructor = Child;
+			Child.uber = Parent.prototype;
+		}
+
+		extend(Student,Person);
+
+		// 实例化子类
+		var zhangsan = new Student("梅敏君","25");
+		console.log(zhangsan.getName());	//打印超类方法
+		console.log(zhangsan.getAge());		//打印自身方法
+		console.log(zhangsan);	//打印对象
+
+
+
+
+
+
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
