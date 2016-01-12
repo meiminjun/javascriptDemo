@@ -45,7 +45,6 @@
 		}
 		CompositeImpl.prototype.select = function() {
 			alert('select');
-			
 		}
 
 		// 三、检验接口里的方法
@@ -64,11 +63,11 @@
 					throw new Error('the arguments constructor not be Interface class');
 				}
 				// 循环接口实例对象里面的每一个方法
-				for(var j = 0;j<instanceInterface.length;j++) {
+				for(var j = 0;j<instanceInterface.methods.length;j++) {
 					// 用一个零时变量接收每一个方法的名字
 					var methodName = instanceInterface.methods[j];
 					if(!object[methodName] || typeof object[methodName] !== 'function') {
-						throw new Error('the method name '+methodName+' is not found!');
+						throw new Error('the method name "'+methodName+'" is not found!');
 					}
 				}
 			}

@@ -38,23 +38,31 @@
 
 		//-----------------利用空对象作为中介----------------
 		// 封装继承函数
-		function extend(Child,Parent) {
-			var F = function() {};
-			debugger;
-			console.log(Child);
-			F = Parent.prototype;
-			var f = new F();
-			Child.prototype = f;
-			Child.prototype.constructor = Child;
-			Child.uber = Parent.prototype;
-		}
+		// function extend(Child,Parent) {
+		// 	var F = function() {};
+		// 	debugger;
+		// 	console.log(Child);
+		// 	F = Parent.prototype;
+		// 	var f = new F();
+		// 	Child.prototype = f;
+		// 	Child.prototype.constructor = Child;
+		// 	Child.uber = Parent.prototype;
+		// }
+
+		function extend(Child, Parent) {
+
+	　　　　var F = function(){};
+	　　　　F.prototype = Parent.prototype;
+	　　　　Child.prototype = new F();
+	　　　　Child.prototype.constructor = Child;
+	　　　　Child.uber = Parent.prototype;
+	　　}
 
 		extend(Student,Person);
 
 		// 实例化子类
 		var zhangsan = new Student("梅敏君","25");
 		console.log(zhangsan.getName());	//打印超类方法
-		console.log(zhangsan.getAge());		//打印自身方法
 		console.log(zhangsan);	//打印对象
 
 
