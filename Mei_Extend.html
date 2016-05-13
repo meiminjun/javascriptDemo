@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>框架</title>
+    <script src="js/Mei.js"></script>
+</head>
+<body>
+<h1>Mei框架-Number方法的测试</h1>
+<script>
+    var test1 = {
+        name: "test1"
+    };
+    var test2 = {
+        age: "2"
+    };
+    var test4 = {
+        sex: "man"
+    };
+    var test3 = Mei.extend(test1, test2, test4);
+
+    function Al(parent, message, opts) {
+        opts = opts || {};
+        this.width = opts.width === undefined ? 320 : opts.width;
+        this.height = opts.height === undefined ? 240 : opts.height;
+        this.x = opts.x === undefined ? (parent.width / 2) - (this.width / 2) : opts.x;
+        this.y = opts.y === undefined ? (parent.height / 2) - (this.height / 2) : opts.y;
+        this.title = opts.title || "Alert";
+        this.titleColor = opts.titleColor || "gray";
+        this.bgColor = opts.bgColor || "white";
+        this.textColor = opts.textColor || "black";
+        this.icon = opts.icon || "info";
+        this.modal = opts.modal || "false";
+        this.message = message;
+    }
+
+    var t = new Al({width: 200, height: 300}, "3434", {icon: "test"});
+    console.log(t);
+
+    function Alert(parent, message, opts) {
+        opts = Mei.extend({
+            width: 320,
+            height: 240
+        });
+        opts = Mei.extend({
+            x: (parent.width / 2) - (opts.width / 2),
+            y: (parent.width / 2) - (opts.height / 2),
+            title: "Alert",
+            titleColor: "gray",
+            bgColor: "white",
+            textColor: "black",
+            icon: "info",
+            modal: false
+        }, opts);
+        Mei.extend(this, opts);
+    }
+    var alert = new Alert({width: 2, height: 3}, "消息", {textColor: "500", bgColor: "1000"});
+    console.log(alert);
+</script>
+</body>
+</html>
