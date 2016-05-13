@@ -1,4 +1,4 @@
-(function (window) {
+;(function (window) {
     // Establish the object that gets returned to break out of a loop iteration.
     var breaker = {};
     var ArrayProto = Array.prototype, ObjProto = Object.prototype, FuncProto = Function.prototype;
@@ -103,6 +103,17 @@
         },
         has: function (obj, key) {
             return hasOwnProperty.call(obj, key);
+        },
+        // 继承方法
+        extend: function (obj) {
+            each(slice.call(arguments, 1), function (source) {
+                if (source) {
+                    for (var prop in source) {
+                        obj[prop] = source[prop];
+                    }
+                }
+            });
+            return obj;
         }
     };
     // The cornerstone, an `each` implementation, aka `forEach`.
