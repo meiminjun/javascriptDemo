@@ -1,17 +1,32 @@
-;(function (window) {
+;
+(function (window) {
     // Establish the object that gets returned to break out of a loop iteration.
     var breaker = {};
-    var ArrayProto = Array.prototype, ObjProto = Object.prototype, FuncProto = Function.prototype;
+    var ArrayProto = Array.prototype,
+        ObjProto = Object.prototype,
+        FuncProto = Function.prototype;
     // Create quick reference variables for speed access to core prototypes.
     var push = ArrayProto.push,
         slice = ArrayProto.slice,
         concat = ArrayProto.concat,
         toString = ObjProto.toString,
         hasOwnProperty = ObjProto.hasOwnProperty;
-
     var nativeIsArray = Array.isArray,
         nativeForEach = ArrayProto.forEach;
     var Mei = {
+        Dom: {
+            getAttr: function (ele, attr) {
+                var e = ele.get(0);
+                var attrs = e.attributes;
+                if (attrs == undefined) {
+                    return "";
+                } else if (attrs[attr] == undefined) {
+                    return "";
+                } else {
+                    return attrs[attr].value;
+                }
+            }
+        },
         // 数组方法
         Array: {
             isArray: nativeIsArray || function (obj) {
@@ -87,7 +102,6 @@
                 }
                 return min + Math.floor(Math.random() * (max - min + 1));
             },
-
         },
         /**
          * [isEmpty description]
@@ -98,7 +112,8 @@
             if (obj == null) return true;
             if (Mei.isNumber(obj)) return false;
             if (Mei.Array.isArray(obj) || Mei.isString(obj)) return obj.length === 0;
-            for (var key in obj) if (Mei.has(obj, key)) return false;
+            for (var key in obj)
+                if (Mei.has(obj, key)) return false;
             return true;
         },
         has: function (obj, key) {
