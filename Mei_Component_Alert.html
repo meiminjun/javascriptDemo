@@ -101,46 +101,12 @@
             width: 100%;
         }
 
-        .alert {
-            width: 280px;
-            margin: 0 auto;
-            border: solid 1px orange;
-            border-radius: 5px;
-        }
+        
     </style>
     <script src="js/Mei.js"></script>
 </head>
 <body>
 <h1 test="测试一下">Alert组件</h1>
-
-<div id="FPrompt" class="pop2_content">
-    <!-- 开始 -->
-    <!-- 设置标题区 -->
-    <p class="pop2_title Ftitle">
-        温馨提示
-    </p>
-    <!--设置内容区-->
-    <div class="pop2_content">
-        <div class="pop2_word Fcontent">
-            <p>
-                <!--内容信息-->
-
-		        	<span>
-		        		操作超时，请重新登录
-		        	</span>
-
-                <!--内容信息-->
-            </p>
-        </div>
-        <div class="pop2_btn">
-            <!--按钮区-->
-            <input type="button" class="c_F60 w100" action="FBntAlert" value="确定">
-            <!--按钮区-->
-        </div>
-    </div>
-    <!--设置内容区-->
-
-</div>
 <script>
     var alert = new Mei.Template.Alert({
         content: '测试内容'

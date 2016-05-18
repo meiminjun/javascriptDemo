@@ -1,3 +1,9 @@
+.alert {
+    width: 280px;
+    margin: 0 auto;
+    border: solid 1px orange;
+    border-radius: 5px;
+}
 .a-title {
     height: 35px;
     line-height: 35px;
