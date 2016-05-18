@@ -108,10 +108,13 @@
 <body>
 <h1 test="测试一下">Alert组件</h1>
 <script>
-    var alert = new Mei.Template.Alert({
-        content: '测试内容'
+    var alertFun = new Mei.Template.Alert({
+        content: '测试内容',
+        success:function() {
+            alert("成功");
+        }
     });
-    alert.init();
+    alertFun.init();
 </script>
 </body>
 </html>
