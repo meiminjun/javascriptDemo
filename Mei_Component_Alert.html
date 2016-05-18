@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>框架</title>
+    <style>
+        #FPrompt {
+            position: static;
+        }
+
+        .pop2_content {
+            width: 280px;
+            background: #fff;
+            border-radius: 10px;
+        }
+
+        .pop2_title {
+            height: 35px;
+            line-height: 35px;
+            background: none;
+            text-align: center;
+            color: #F60;
+            border-bottom: 1px solid #B6B6B6;
+            font-size: 16px;
+            font-family: "microsoft yahei";
+        }
+
+        .pop2_word {
+            padding: 20px;
+            width: 100%;
+            line-height: 22px;
+            text-align: center;
+            word-wrap: break-word;
+            word-break: break-all;
+            box-sizing: border-box;
+        }
+
+        .pop2_word p {
+            display: inline-block;
+            text-align: left;
+        }
+
+        .pop2_btn {
+            border-top: 1px solid #B6B6B6;
+            display: -webkit-box;
+            display: -moz-box;
+            display: -o-box;
+            display: -ms-box;
+            display: box;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -o-box-sizing: border-box;
+            -ms-box-sizing: border-box;
+            box-sizing: border-box;
+            -webkit-box-align: center;
+            -moz-box-align: center;
+            -o-box-align: center;
+            -ms-box-align: center;
+            box-align: center;
+            position: relative;
+            width: 100%;
+        }
+
+        .pop2_btn input[type="button"]:last-child {
+            border: none;
+        }
+
+        .pop2_btn input[type="button"] {
+            height: 35px;
+            line-height: 35px;
+            font-size: 16px;
+            font-family: "microsoft yahei";
+            border: none;
+            border-right: 1px solid #B6B6B6;
+            border-radius: 0;
+            background: none;
+        }
+
+        .pop2_btn .w100 {
+            width: 100%;
+            -moz-box-flex: 1;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -o-box-sizing: border-box;
+            -ms-box-sizing: border-box;
+            box-sizing: border-box;
+            float: left;
+            position: relative;
+        }
+
+        .pop2_btn .c_F60 {
+            color: #F60;
+        }
+
+        .w100 {
+            width: 100%;
+        }
+
+        .alert {
+            width: 280px;
+            margin: 0 auto;
+            border: solid 1px orange;
+            border-radius: 5px;
+        }
+    </style>
+    <script src="js/Mei.js"></script>
+</head>
+<body>
+<h1 test="测试一下">Alert组件</h1>
+
+<div id="FPrompt" class="pop2_content">
+    <!-- 开始 -->
+    <!-- 设置标题区 -->
+    <p class="pop2_title Ftitle">
+        温馨提示
+    </p>
+    <!--设置内容区-->
+    <div class="pop2_content">
+        <div class="pop2_word Fcontent">
+            <p>
+                <!--内容信息-->
+
+		        	<span>
+		        		操作超时，请重新登录
+		        	</span>
+
+                <!--内容信息-->
+            </p>
+        </div>
+        <div class="pop2_btn">
+            <!--按钮区-->
+            <input type="button" class="c_F60 w100" action="FBntAlert" value="确定">
+            <!--按钮区-->
+        </div>
+    </div>
+    <!--设置内容区-->
+
+</div>
+<script>
+    debugger;
+    var alert = new Mei.Template.Alert({
+        content: '测试内容'
+    });
+    alert.init();
+</script>
+</body>
+</html>
