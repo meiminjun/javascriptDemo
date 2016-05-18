@@ -16,11 +16,11 @@
     var Mei = {
         Dom: {
             getAttr: function (ele, attr) {
-                var e = ele.get(0);
+                var e = ele[0] || {};
                 var attrs = e.attributes;
-                if (attrs == undefined) {
+                if (typeof attrs == 'undefined') {
                     return "";
-                } else if (attrs[attr] == undefined) {
+                } else if (typeof attrs[attr] == 'undefined') {
                     return "";
                 } else {
                     return attrs[attr].value;
