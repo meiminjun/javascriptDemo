@@ -1,5 +1,5 @@
 ;
-(function (window) {
+(function(window) {
     // Establish the object that gets returned to break out of a loop iteration.
     var breaker = {};
     var ArrayProto = Array.prototype,
@@ -15,7 +15,7 @@
         nativeForEach = ArrayProto.forEach;
     var Mei = {
         Dom: {
-            getAttr: function (ele, attr) {
+            getAttr: function(ele, attr) {
                 var e = ele[0] || {};
                 var attrs = e.attributes;
                 if (typeof attrs == 'undefined') {
@@ -33,14 +33,14 @@
         Template: {},
         // 数组方法
         Array: {
-            isArray: nativeIsArray || function (obj) {
+            isArray: nativeIsArray || function(obj) {
                 return toString.call(obj) == '[object Array]';
             }
         },
         // 数字
         Number: {
             // 保留2位小数(4舍5入)，如：2，会在2后面补上00.即2.00
-            toDecimalTwo: function (x) {
+            toDecimalTwo: function(x) {
                 var f_x = parseFloat(x);
                 if (isNaN(f_x)) {
                     alert('function:toDecimalTwo->parameter error');
@@ -64,7 +64,7 @@
              * @param  {[type]} num [要保留的位数]
              * @return {[type]}     [description]
              */
-            formatNumber: function (x, num) {
+            formatNumber: function(x, num) {
                 var f = parseFloat(x);
                 if (isNaN(f) || isNaN(num)) {
                     return;
@@ -78,7 +78,7 @@
              * @param  {[type]} pos [description]
              * @return {[type]}     [description]
              */
-            fomatFloat: function (src, pos) {
+            fomatFloat: function(src, pos) {
                 var s = src || 0;
                 var num = pos + 1;
                 var result = 0;
@@ -99,7 +99,7 @@
              * @param  {[type]} max [description]
              * @return {[type]}     [description]
              */
-            random: function (min, max) {
+            random: function(min, max) {
                 if (max == null) {
                     max = min;
                     min = 0;
@@ -112,7 +112,7 @@
          * @param  {[type]}  obj [description]
          * @return {Boolean}     [description]
          */
-        isEmpty: function (obj) {
+        isEmpty: function(obj) {
             if (obj == null) return true;
             if (Mei.isNumber(obj)) return false;
             if (Mei.Array.isArray(obj) || Mei.isString(obj)) return obj.length === 0;
@@ -120,12 +120,12 @@
                 if (Mei.has(obj, key)) return false;
             return true;
         },
-        has: function (obj, key) {
+        has: function(obj, key) {
             return hasOwnProperty.call(obj, key);
         },
         // 继承方法
-        extend: function (obj) {
-            each(slice.call(arguments, 1), function (source) {
+        extend: function(obj) {
+            each(slice.call(arguments, 1), function(source) {
                 if (source) {
                     for (var prop in source) {
                         obj[prop] = source[prop];
@@ -138,7 +138,7 @@
     // The cornerstone, an `each` implementation, aka `forEach`.
     // Handles objects with the built-in `forEach`, arrays, and raw objects.
     // Delegates to **ECMAScript 5**'s native `forEach` if available.
-    var each = Mei.each = Mei.forEach = function (obj, iterator, context) {
+    var each = Mei.each = Mei.forEach = function(obj, iterator, context) {
         if (obj == null) return;
         if (nativeForEach && obj.forEach === nativeForEach) {
             obj.forEach(iterator, context);
@@ -155,13 +155,13 @@
         }
     };
     // Add some isType methods: isArguments, isFunction, isString, isNumber, isDate, isRegExp.
-    each(['Arguments', 'Function', 'String', 'Number', 'Date', 'RegExp'], function (name) {
-        Mei['is' + name] = function (obj) {
+    each(['Arguments', 'Function', 'String', 'Number', 'Date', 'RegExp'], function(name) {
+        Mei['is' + name] = function(obj) {
             return toString.call(obj) == '[object ' + name + ']';
         };
     });
-
-    var Alert = function (data) {
+    // alert组件
+    var Alert = function(data) {
         if (!data) {
             return;
         }
@@ -199,16 +199,13 @@
         // 为提示内容添加文本
         this.contentNode.innerHTML = this.content;
         // 点击确定按钮执行方法 如果 data中有success方法则为success方法，否则为空函数
-        this.success = data.success || function () {
-            };
+        this.success = data.success || function() {};
         // 点击关闭按钮执行方法
-        this.fail = data.fail || function () {
-            };
-    }
-
+        this.fail = data.fail || function() {};
+    };
     Alert.prototype = {
         // 创建方法
-        init: function () {
+        init: function() {
             // 生成提示框
             this.panel.appendChild(this.titleNode);
             this.panel.appendChild(this.closeBtn);
@@ -222,31 +219,59 @@
             // 显示提示框
             this.show();
         },
-        bindEvent: function () {
+        bindEvent: function() {
             var me = this;
             // 关闭按钮点击事件
-            this.closeBtn.onclick = function () {
+            this.closeBtn.onclick = function() {
                 // 执行关闭取消方法
                 me.fail();
                 // 隐藏弹窗
                 me.hide();
-            }
+            };
             // 确定按钮点击事件
-            this.confirmBtn.onclick = function () {
+            this.confirmBtn.onclick = function() {
                 // 执行点击事件方法
                 me.success();
                 // 隐藏弹窗
                 me.hide();
-            }
-
+            };
         },
         // 隐藏弹窗方法
-        hide: function () {
+        hide: function() {
             this.panel.style.display = 'none';
         },
         // 显示弹窗方法
-        show: function () {
+        show: function() {
             this.panel.style.display = 'block';
+        }
+    };
+    // actionsheet组件
+    var ActionSheet = function(data) {
+        if (!data) {
+            return;
+        }
+        var _data = [];
+        if (data.length > 0) {
+            for (var i = 0; i < data.length; i++) {
+                var item = data[i];
+                _data[i].text = item.text;
+                _data[i].className = item.className || "AS-blue";
+                _data[i].click = item.click || function() {};
+            }
+        }
+        this.data = _data;
+        // 创建面板
+        this.panel = document.createElement('div');
+        // 为ActionSheet创建面板添加类
+        this.panel.className = 'ActionSheet';
+        //
+    };
+    ActionSheet.prototype = {
+        // 初始化方法
+        init: function() {
+            var _data = this.data;
+            for (var i = 0; i < _data.length; i++) {}
+            this.panel.appendChild();
         }
     };
     Mei.Template.Alert = Alert;
