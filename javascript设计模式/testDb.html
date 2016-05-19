@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <input id="add" type="text">
+    <input id="addBtn" type="button" value="添加值">
+
+    <input id="getBtn" type="button" value="获取本地数据">
+    <input id="removeBtn" type="button" value="移除本地数据">
+    <script src="./29_1_DB.js"></script>
+    <script>
+        var test = document.getElementById('add');
+        var addBtn = document.getElementById('addBtn');
+        var getBtn = document.getElementById('getBtn');
+        var removeBtn = document.getElementById('removeBtn');
+        var DB = new BaseLocalStorage('my');
+        addBtn.addEventListener('click',function() {
+             var value = test.value;
+             addLocalStoreage(value);
+        });
+        function addLocalStoreage(value) {
+            DB.set("db",value,function() {
+                console.log(arguments);
+            });
+        }
+        getBtn.addEventListener('click',function() {
+            debugger;
+            DB.get('db',function() {
+                console.log(arguments);
+            });
+        });
+        removeBtn.onclick = function() {
+            DB.remove('db',function() {
+                console.log(arguments);
+            });
+        }
+    </script>
+</body>
+
+</html>
