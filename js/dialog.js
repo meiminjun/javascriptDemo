@@ -7,8 +7,9 @@
 
 Mei.$package("Mei",function(M) {
     var $D = M.dom,
-        $E = J.event,
+        $E = M.event,
         $U = M.Util;
+
     // alert组件
     var Dialog = function(data) {
         if (!data) {
@@ -51,6 +52,7 @@ Mei.$package("Mei",function(M) {
         this.success = data.success || function() {};
         // 点击关闭按钮执行方法
         this.fail = data.fail || function() {};
+        this.init();
     };
     Dialog.prototype = {
         // 创建方法
@@ -65,8 +67,6 @@ Mei.$package("Mei",function(M) {
             document.body.appendChild(this.panel);
             // 绑定事件
             this.bindEvent();
-            // 显示提示框
-            this.show();
         },
         bindEvent: function() {
             var me = this;
@@ -79,10 +79,10 @@ Mei.$package("Mei",function(M) {
             };
             // 确定按钮点击事件
             this.confirmBtn.onclick = function() {
-                // 执行点击事件方法
-                me.success();
                 // 隐藏弹窗
                 me.hide();
+                // 执行点击事件方法
+                me.success();
             };
         },
         // 隐藏弹窗方法
@@ -94,5 +94,5 @@ Mei.$package("Mei",function(M) {
             this.panel.style.display = 'block';
         }
     };
-    this.Dialog = Dialog;
+    M.Dialog = Dialog;
 });

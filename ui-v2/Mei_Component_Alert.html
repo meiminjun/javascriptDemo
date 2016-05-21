@@ -7,20 +7,22 @@
     <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>框架</title>
-    <link rel="stylesheet" href="./css/Mei.css">
-    <script src="js/Mei.js"></script>
+    <link rel="stylesheet" href="../css/Mei.css">
+    <script src="../js/Mei_v2.js"></script>
+    <script src="../js/dialog.js"></script>
 </head>
 <body>
 <h1 test="测试一下">Alert组件</h1>
 <script>
-    var alertFun = new Mei.Template.Alert({
+    debugger;
+    var alertFun = new Mei.Dialog({
         title:'这个一个提示',
         content: '测试内容',
         success:function() {
             alert("成功");
         }
     });
-    alertFun.init();
+    alertFun.show();
 </script>
 </body>
 </html>

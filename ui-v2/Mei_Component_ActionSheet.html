@@ -8,7 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>框架</title>
     <link rel="stylesheet" href="../css/Mei.css">
-    <script src="../js/Mei.js"></script>
+    <script src="../js/Mei_v2.js"></script>
+    <script src="../js/actionsheet.js"></script>
 </head>
 <body>
 <h1 test="测试一下">ActionSheet组件</h1>
@@ -25,14 +26,22 @@
     </div>
 </div> -->
 <script>
-    // var alertFun = new Mei.ui.Alert({
-    //     title:'这个一个提示',
-    //     content: '测试内容',
-    //     success:function() {
-    //         alert("成功");
-    //     }
-    // });
-    // alertFun.init();
+   var option = {
+    title:"标题",
+    items:[{
+        text:'这是个内容',
+        click:function() {
+            alert(111);
+        }
+    },{
+        text:'这是第二个内容',
+        click:function() {
+            alert(2222);
+        }
+    }]
+   };
+   var alctionSheet = new Mei.ActionSheet(option);
+   alctionSheet.show();
 </script>
 </body>
 </html>

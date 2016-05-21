@@ -13,7 +13,7 @@
         hasOwnProperty = ObjProto.hasOwnProperty;
     var nativeIsArray = Array.isArray,
         nativeForEach = ArrayProto.forEach;
-    var Mei = {
+    var M = {
         $namespace: function(name) {
             if (!name) {
                 return window;
@@ -192,10 +192,10 @@
          */
         isEmpty: function(obj) {
             if (obj == null) return true;
-            if (Mei.isNumber(obj)) return false;
-            if (Mei.Array.isArray(obj) || Mei.isString(obj)) return obj.length === 0;
+            if (M.isNumber(obj)) return false;
+            if (M.Array.isArray(obj) || M.isString(obj)) return obj.length === 0;
             for (var key in obj)
-                if (Mei.has(obj, key)) return false;
+                if (M.has(obj, key)) return false;
             return true;
         },
         has: function(obj, key) {
@@ -213,6 +213,7 @@
             return obj;
         }
     };
+    window.M = window.Mei = M;
     // The cornerstone, an `each` implementation, aka `forEach`.
     // Handles objects with the built-in `forEach`, arrays, and raw objects.
     // Delegates to **ECMAScript 5**'s native `forEach` if available.
@@ -226,7 +227,7 @@
             }
         } else {
             for (var key in obj) {
-                if (Mei.has(obj, key)) {
+                if (M.has(obj, key)) {
                     if (iterator.call(context, obj[key], key, obj) === breaker) return;
                 }
             }
@@ -234,11 +235,11 @@
     };
     // Add some isType methods: isArguments, isFunction, isString, isNumber, isDate, isRegExp.
     forEach(['Arguments', 'Function', 'String', 'Number', 'Date', 'RegExp'], function(name) {
-        Mei['is' + name] = function(obj) {
+        M['is' + name] = function(obj) {
             return toString.call(obj) == '[object ' + name + ']';
         };
     });
-    window.Mei = window.M = Mei;
+  
 })(window);
 // type
 M.$package(function(M) {
@@ -290,11 +291,11 @@ M.$package(function(M) {
     $T = M.type,
         tagNameExpr = /^[\w-]+$/,
         idExpr = /^#([\w-]*)$/,
-        classExpr = /^\.([\w-]+)$/,
-        selectorEngine;
-    var hasClassListProperty = 'classList' in document.docuemntElment;
+        classExpr = /^\.([\w-]+)$/;
+        // selectorEngine;
+    var hasClassListProperty = 'classList' in document.documentElement;
     var vendors = ['o', 'ms', 'moz', 'webkit'];
-    var div = docuemnt.createElement('div');
+    var div = document.createElement('div');
     var $D = {
         $: function(selector, context) {
             var result;
