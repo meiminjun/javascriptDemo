@@ -30,18 +30,18 @@
     title:"标题",
     items:[{
         text:'这是个内容',
-        click:function() {
-            alert(111);
+        click:function(target) {
+            console.log(target);
         }
     },{
         text:'这是第二个内容',
-        click:function() {
+        click:function(target) {
             alert(2222);
         }
     }]
    };
    var alctionSheet = new Mei.ActionSheet(option);
-   alctionSheet.show();
+   alctionSheet.init();
 </script>
 </body>
 </html>

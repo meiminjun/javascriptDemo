@@ -70,7 +70,6 @@ Mei.$package("Mei", function(M) {
         this.cancelNode.innerHTML = '取消';
         // 插入到页面中
         document.body.appendChild(this.panel);
-        this.init();
     };
     ActionSheet.prototype = {
         // 初始化方法
@@ -88,12 +87,15 @@ Mei.$package("Mei", function(M) {
             this.cancelNode.onclick = function() {
                 me.hide();
             }
+            this.show();
         },
         bindEvent: function(node) {
             var me = this;
             node.node.onclick = function() {
+                debugger;
+                var target = this;
                 // 响应点击事件
-                node.click();
+                node.click(target);
                 // 隐藏弹窗
                 me.hide();
             }

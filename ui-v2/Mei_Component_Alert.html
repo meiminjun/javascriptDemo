@@ -14,15 +14,27 @@
 <body>
 <h1 test="测试一下">Alert组件</h1>
 <script>
-    debugger;
-    var alertFun = new Mei.Dialog({
+    // debugger;
+    var alertFun = new Mei.Confirm({
         title:'这个一个提示',
         content: '测试内容',
-        success:function() {
+        confirm:function() {
             alert("成功");
+        },
+        cancel:function() {
+            alert("取消");
         }
     });
-    alertFun.show();
+    alertFun.init();
+
+    // var dialog = new Mei.Dialog({
+    //     title:'这是个提示',
+    //     content:'测试内容',
+    //     success:function() {
+    //         alert("成功");
+    //     }
+    // });
+    // dialog.init();
 </script>
 </body>
 </html>

@@ -102,19 +102,19 @@
                 }
             }
         },
-        Dom: {
-            getAttr: function(ele, attr) {
-                var e = ele[0] || {};
-                var attrs = e.attributes;
-                if (typeof attrs == 'undefined') {
-                    return "";
-                } else if (typeof attrs[attr] == 'undefined') {
-                    return "";
-                } else {
-                    return attrs[attr].value;
-                }
-            }
-        },
+        // Dom: {
+        //     getAttr: function(ele, attr) {
+        //         var e = ele[0] || {};
+        //         var attrs = e.attributes;
+        //         if (typeof attrs == 'undefined') {
+        //             return "";
+        //         } else if (typeof attrs[attr] == 'undefined') {
+        //             return "";
+        //         } else {
+        //             return attrs[attr].value;
+        //         }
+        //     }
+        // },
         // 数字
         Number: {
             // 保留2位小数(4舍5入)，如：2，会在2后面补上00.即2.00
@@ -1010,4 +1010,28 @@ M.$package(function(M) {
         }
     };
     M.event = $E;
+});
+
+
+M.$package(function(M) {
+        var $D = M.dom;
+        var Util = {
+            // 显示蒙板
+            showMask:function() {
+                var maskNode = document.getElementById('mask');
+                if(!maskNode) {
+                    var maskNode = document.createElement("div");
+                    maskNode.className = "mask";
+                    maskNode.id = "mask";
+                    document.body.insertBefore(maskNode,document.body.children[0]);
+                }
+            },
+            hideMask:function() {
+                var maskNode = document.getElementById('mask');
+                if(maskNode) {
+                    $D.remove(maskNode);
+                }
+            }
+        }
+        M.Util = Util;
 });
