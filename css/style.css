@@ -1,0 +1,16 @@
+@charset "UTF-8";
+　
+div {
+  　color: #fff;
+  width: 100%;
+  height: 100%; }
+
+body .alert {
+  border: solid 1px #33B5E5;
+  border-radius: 5px;
+  background: inherit;
+  color: inherit; }
+body .alert2 {
+  border: solid 1px; }
+
+/*# sourceMappingURL=style.css.map */

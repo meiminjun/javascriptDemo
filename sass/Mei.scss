@@ -1,0 +1,53 @@
+@charset "UTF-8";
+*, *:before, *:after {
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -moz-tap-highlight-color: rgba(0,0,0,0);
+    -moz-user-select: -moz-none;
+    -webkit-touch-callout: none;
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -ms-touch-action: pan-y;
+}
+body, html {
+    -ms-overflow-style: none !important;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+body {
+    overflow-x: hidden;
+    -webkit-text-size-adjust: none;
+    font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+    color: #000;
+    font-size: 14px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-align: stretch;
+    background: #fff;
+}
+#mask {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 999999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    opacity: 0.5;
+}
+.w100 {
+    width: 100% !important;
+}
+/*!
+　Dialog样式
+*/
+@import "./mei-dialog.scss";
+/*!
+　Actionsheet样式
+*/
+@import "./mei-actionsheet.scss";

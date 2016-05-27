@@ -9,15 +9,15 @@ Mei.$package("Mei", function(M) {
         $E = M.event,
         $U = M.Util;
 
-    // <div id="mei_actionsheet" class="mei_actionsheet">
+    // <div id="mei-actionsheet" class="mei-actionsheet">
     //     <div style="width:100%">
     //         <a class="blue">标题</a>
     //         <a class="as-blue">
     //             第一行内容
-    //         </a> 
+    //         </a>
     //         <a class="blue">
     //             第一行内容
-    //         </a> 
+    //         </a>
     //         <a class="cancel">取消</a>
     //     </div>
     // </div>
@@ -50,8 +50,8 @@ Mei.$package("Mei", function(M) {
         // 创建面板
         this.panel = document.createElement('div');
         // 为ActionSheet创建面板添加类
-        this.panel.id = 'mei_actionsheet';
-        this.panel.className = 'mei_actionsheet';
+        this.panel.id = 'mei-actionsheet';
+        this.panel.className = 'mei-actionsheet';
 
         // 创建容器
         this.contentPanel = document.createElement('div');
@@ -92,7 +92,6 @@ Mei.$package("Mei", function(M) {
         bindEvent: function(node) {
             var me = this;
             node.node.onclick = function() {
-                debugger;
                 var target = this;
                 // 响应点击事件
                 node.click(target);

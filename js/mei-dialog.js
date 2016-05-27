@@ -27,6 +27,8 @@ Mei.$package("Mei",function(M) {
         this.cancelBtn = document.createElement('span');
         // 创建关闭按钮
         this.closeBtn = document.createElement('b');
+        // 为提示框添加id
+        this.panel.id = 'mei-dialog';
         // 为提示框创建面板添加类
         this.panel.className = 'alert';
         // 为标题添加样式类
