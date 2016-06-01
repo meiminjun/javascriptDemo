@@ -25,16 +25,12 @@ Mei.$package("Mei",function(M) {
         this.confirmBtn = document.createElement('span');
         // 创建取消按钮
         this.cancelBtn = document.createElement('span');
-        // 创建关闭按钮
-        this.closeBtn = document.createElement('b');
         // 为提示框添加id
         this.panel.id = 'mei-dialog';
         // 为提示框创建面板添加类
         this.panel.className = 'alert';
         // 为标题添加样式类
         this.titleNode.className = 'a-title';
-        // 为关闭按钮添加样式类
-        this.closeBtn.className = 'a-close';
         // 为确定按钮添加样式类
         this.confirmBtn.className = 'a-confirm';
         // 为取消按钮添加样式类
@@ -66,7 +62,6 @@ Mei.$package("Mei",function(M) {
             this.panel.style.right = _right+'px';
             // 生成提示框
             this.panel.appendChild(this.titleNode);
-            this.panel.appendChild(this.closeBtn);
             this.panel.appendChild(this.contentNode);
             this.panel.appendChild(this.confirmBtn);
             if(this.cancelBtn) {

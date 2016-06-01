@@ -239,7 +239,7 @@
             return toString.call(obj) == '[object ' + name + ']';
         };
     });
-  
+
 })(window);
 // type
 M.$package(function(M) {
@@ -302,7 +302,7 @@ M.$package(function(M) {
             var qse;
             context = context || doc;
             //优先使用原始的
-            if (idExpr, test(select)) {
+            if (idExpr.test(selector)) {
                 result = this.id(selector.replace("#", ""));
                 if (result) return [result];
                 else return [];

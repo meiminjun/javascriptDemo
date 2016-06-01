@@ -87,7 +87,6 @@ Mei.$package("Mei", function(M) {
             this.cancelNode.onclick = function() {
                 me.hide();
             }
-            this.show();
         },
         bindEvent: function(node) {
             var me = this;

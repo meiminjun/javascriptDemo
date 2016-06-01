@@ -1,14 +1,15 @@
 # Sass学习笔记
-单文件转换命令:
+
+#### 单文件转换命令:
 > sass style.scss style.css
 
-单文件监听命令:
+#### 单文件监听命令:
 > sass --watch style.scss:style.css
 
-文件夹监听命令:
+#### 文件夹监听命令:
 > sass --watch sass:css
 
-SASS提供四个编译风格的选项:
+#### SASS提供四个编译风格的选项:
 > nested：嵌套缩进的css代码，它是默认值。
 > expanded：没有缩进的、扩展的css代码。
 > compact：简洁格式的css代码。
