@@ -20,3 +20,5 @@
 
 注意事项：
 1 当编译出现乱码时，在.scss文件顶部添加 @charset "UTF-8";
+
+> 更多学习：http://www.ruanyifeng.com/blog/2012/06/sass.html
