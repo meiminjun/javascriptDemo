@@ -13,7 +13,7 @@
 </head>
 <body>
 <h1 id="testId" test="测试一下">Select</h1>
-<div id="mei-select" class="mei-select">
+<!-- <div id="mei-select" class="mei-select">
     <p class="blue">标题</p>
     <div style="width:100%">
         <a class="as-blue">
@@ -23,7 +23,7 @@
             第一行内容
         </a>
     </div>
-</div>
+</div> -->
 
 <script>
 
@@ -48,7 +48,7 @@
            value: '3'
        }],
        callback:function(data) {
-          alert(111);
+          alert(JSON.stringify(data));
        }
    };
    var select = new Mei.Select(data);

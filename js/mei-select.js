@@ -3,31 +3,6 @@ Mei.$package("Mei", function(M) {
         $E = M.event,
         $U = M.Util;
 
-    var data = {
-        ele: 'testId',
-        title: "请选择银行卡号",
-        display: {
-            keyName: 'AccountName',
-            valueName: 'value'
-        },
-        items: [{
-            other: 'erqwerqeer',
-            AccountName: '内容1',
-            value: '1'
-        }, {
-            other: 'erqwerqeer',
-            AccountName: '内容2',
-            value: '2'
-        }, {
-            other: 'erqwerqeer',
-            AccountName: '内容3',
-            value: '3'
-        }],
-        callback: function(data) {
-
-        }
-    };
-
     // 格式化字符串方法
     function formateString(str, data) {
         return str.replace(/\{#(\w+)#\}/g, function(match, key) {
@@ -45,7 +20,8 @@ Mei.$package("Mei", function(M) {
 
         // 为select创建面板
         this.panel = document.createElement('div');
-        this.panel.clasName = 'mei-select';
+        this.panel.className = 'mei-select';
+        this.panel.id = 'mei-select';
         this.panel.click = data.callback || function() {};
         // 创建容器
         this.contentPanel = document.createElement('div');
@@ -61,17 +37,16 @@ Mei.$package("Mei", function(M) {
         this.display = data.display;
         this.items = data.items;
         // 创建基础样式模板
-        this.item = '<a class="as-blue" value = "{#' + this.display.valueName + '#}">"{#' + this.display.keyName + '#}"</a>';
+        this.item = '<a class="at-btn" value = "{#' + this.display.valueName + '#}">{#' + this.display.keyName + '#}</a>';
         // 创建字符串
         this.itemHtml = '';
-        debugger;
         // 格式化数据
         for (var i = 0, len = data.items.length; i < len; i++) {
             this.itemHtml += formateString(this.item, this.items[i]);
         }
+        this.itemNode = document.createElement("div");
+        this.itemNode.innerHTML = this.itemHtml;
 
-        // 插入到页面中
-        document.body.appendChild(this.panel);
         // $E.on(eleNode,'tap',function() {
         //     alert(111);
         // });
@@ -82,20 +57,24 @@ Mei.$package("Mei", function(M) {
         // 初始化方法
         init: function() {
             var me = this;
+             // 插入到页面中
+            document.body.appendChild(this.panel);
             this.panel.appendChild(this.contentPanel);
             this.contentPanel.appendChild(this.titleNode);
-            debugger;
-            this.contentPanel.appendChild(this.itemHtml);
+            this.contentPanel.appendChild(this.itemNode);
             this.show();
+            this.bindEvent(this.panel);
         },
         bindEvent: function(node) {
             var me = this;
-            node.node.onclick = function() {
-                var target = this;
-                // 响应点击事件
-                node.click(target);
-                // 隐藏弹窗
-                me.hide();
+            node.onclick = function(e) {
+                var target = e.target;
+                if(target.className == "at-btn") {
+                  // 隐藏弹窗
+                  me.hide();
+                  // 响应点击事件
+                  node.click({text:target.innerHTML,value:target.value},this.data,target,this);
+                }
             }
         },
         hide: function() {
