@@ -30,15 +30,17 @@
 </head>
 <body>
   <ul id="ul">
-    <li name="张三"   age="12">第一个<span class="editer" sex="女">内容</span></li>
-    <li name="李四"   age="18">第一个<span class="editer" sex="女">测试2</span></li>
-    <li name="王五"   age="29">第一个<span class="editer" sex="男">测试3</span></li>
-    <li name="张三"   age="21">第一个<span class="editer" sex="男">测试5</span></li>
-    <li name="张三"   age="89">第一个<span class="editer" sex="男">测试56</span></li>
+    <li name="张三"   age="12">第一个<span class="editer" sex="女">内容</span> <span class="last">最后1<span></li>
+    <li name="李四"   age="18">第一个<span class="editer" sex="女" >测试2</span><span class="last">最<span></li>
+    <li name="王五"   age="29">第一个<span class="editer" sex="男">测试3</span><span class="last">最2312<span></li>
+    <li name="张三"   age="21">第一个<span class="editer" sex="男">测试5</span><span class="last">12323<span></li>
+    <li name="张三"   age="89">第一个<span class="editer" sex="男">测试56</span><span class="last">12312323<span></li>
   </ul>
   <script>
+// 好好看一下，阮一峰的“事件”的讲解（3.2事件代理）
+// http://javascript.ruanyifeng.com/dom/event.html
+
   $("#ul>li").on("tap",function(event) {
-    debugger;
     var target = event.target;
     console.log(target);  // 看看target是什么，当前点击事件触发的node
 
@@ -46,9 +48,28 @@
       var sex = $(target).attr("sex");
       alert(sex);
       alert($(target).html());
+
+      // 关于节点的处理和获取（节点父、子和同胞）
+      // http://www.w3school.com.cn/htmldom/dom_nodes.asp
+
+      // 获取和处理相邻的dom节点
+      var parentNode = target.parentNode; //先获取父节点
+      console.log("父节点");
+      console.log(parentNode);
+      console.log("子节点数组");
+      console.log(parentNode.children);
+      var lastChildNode = parentNode.lastChild; // 同 var lastChildNode = parentNode.children[1];  取父节点的子节点数组你想取哪个都可以
+      console.log("父节点的最后一个子节点");
+      console.log(lastChildNode);
+      debugger;
+      var className = $(lastChildNode).attr("class");
+      alert("获取点击事件的最后一个类名"+className);
+
+      console.log("获取点击的父节点的父节点");
+      var ulNode = target.parentNode.parentNode;
+      alert("顶级父节点的id名字："+ulNode.id);
       return;   // 你思考一下为什么加 return   ，不加会怎么样
     }
-
     var name = $(target).attr("name");
     alert(name);
   });
