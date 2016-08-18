@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>框架</title>
+    <link rel="stylesheet" href="../css/Mei.css">
+    <script src="../js/Mei_v2.js"></script>
+    <script src="../js/mei-actionsheet.js"></script>
+</head>
+<body>
+<h1 test="测试一下">ActionSheet组件</h1>
+<!-- <div id="mei_actionsheet" class="mei_actionsheet">
+    <div style="width:100%">
+        <a class="blue">标题</a>
+        <a class="as-blue">
+            第一行内容
+        </a>
+        <a class="blue">
+            第一行内容
+        </a>
+        <a class="cancel">取消</a>
+    </div>
+</div> -->
+<script>
+   var option = {
+    title:"标题",
+    items:[{
+        text:'这是个内容',
+        click:function(target) {
+            console.log(target);
+        }
+    },{
+        text:'这是第二个内容',
+        click:function(target) {
+            alert(2222);
+        }
+    }]
+   };
+   var alctionSheet = new Mei.ActionSheet(option);
+   alctionSheet.init();
+</script>
+</body>
+</html>

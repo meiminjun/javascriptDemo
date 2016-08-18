@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>测试</title>
+    <link rel="stylesheet" href="../css/Mei.css">
+    <script src="../js/Mei_v2.js"></script>
+    <script src="../js/mei-select.js"></script>
+</head>
+<body>
+<h1 id="testId" test="测试一下">Select</h1>
+<!-- <div id="mei-select" class="mei-select">
+    <p class="blue">标题</p>
+    <div style="width:100%">
+        <a class="as-blue">
+            第一行内容
+        </a>
+        <a class="blue">
+            第一行内容
+        </a>
+    </div>
+</div> -->
+
+<script>
+
+   var data = {
+       ele:'testId',
+       title: "请选择银行卡号",
+       display: {
+           keyName: 'AccountName',
+           valueName: 'value'
+       },
+       items: [{
+           other: 'erqwerqeer',
+           AccountName: '内容1',
+           value: '1'
+       }, {
+           other: 'erqwerqeer',
+           AccountName: '内容2',
+           value: '2'
+       }, {
+           other: 'erqwerqeer',
+           AccountName: '内容3',
+           value: '3'
+       }],
+       callback:function(data) {
+          alert(JSON.stringify(data));
+       }
+   };
+   var select = new Mei.Select(data);
+   select.init();
+</script>
+</body>
+</html>

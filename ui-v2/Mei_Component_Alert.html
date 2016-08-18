@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>框架</title>
+    <link rel="stylesheet" href="../css/Mei.css">
+    <script src="../js/Mei_v2.js"></script>
+    <script src="../js/mei-dialog.js"></script>
+</head>
+<body>
+<h1 test="测试一下">Alert组件</h1>
+<!-- <div id="mei-dialog" class="alert" style="top: 178.5px; right: 48px; display: block;">
+    <p class="a-title">这个一个提示</p>
+    <p class="a-content">测试内容</p>
+    <span class="a-confirm">确认</span>
+    <span class="a-cancel">取消</span>
+</div> -->
+
+<script>
+    var alertFun = new Mei.Confirm({
+        title:'这个一个提示',
+        content: '测试内容',
+        confirm:function() {
+            alert("成功");
+        },
+        cancel:function() {
+            alert("取消");
+        }
+    });
+    alertFun.init();
+
+    // var dialog = new Mei.Dialog({
+    //     title:'这是个提示',
+    //     content:'测试内容',
+    //     success:function() {
+    //         alert("成功");
+    //     }
+    // });
+    // dialog.init();
+</script>
+</body>
+</html>

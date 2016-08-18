@@ -30,7 +30,7 @@
         /**
          * 模板方法
          */
-        Template: {},
+        ui: {},
         // 数组方法
         Array: {
             isArray: nativeIsArray || function(obj) {
@@ -255,16 +255,21 @@
             for (var i = 0; i < data.length; i++) {
                 var item = data[i];
                 _data[i].text = item.text;
-                _data[i].className = item.className || "AS-blue";
+                _data[i].className = item.cssClasses || "as-blue";
                 _data[i].click = item.click || function() {};
             }
         }
         this.data = _data;
         // 创建面板
         this.panel = document.createElement('div');
+        // 创建title
+        this.titleNode = document.createElement('p');
+        //  
+
         // 为ActionSheet创建面板添加类
-        this.panel.className = 'ActionSheet';
-        //
+        this.panel.className = 'actionSheet';
+        // 为标题添加样式类
+        this.titleNode.className = 'as-title';
     };
     ActionSheet.prototype = {
         // 初始化方法
@@ -274,6 +279,6 @@
             this.panel.appendChild();
         }
     };
-    Mei.Template.Alert = Alert;
+    Mei.ui.Alert = Alert;
     window.Mei = Mei;
 })(window);
