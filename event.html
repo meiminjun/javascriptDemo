@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+<title>事件获取</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<script src="http://cdn.bootcss.com/zepto/1.0rc1/zepto.min.js"></script>
+<link href="" rel="stylesheet">
+<style type="text/css">
+   ul {
+      list-style: none;
+    }
+    li {
+      border:1px solid;
+      padding:5px;
+    }
+    .editer {
+      border:1px solid;
+      display:inline-block;
+      float:right;
+      width: 86px;
+      height: 17px;
+    }
+</style>
+</head>
+<body>
+  <ul id="ul">
+    <li name="张三"   age="12">第一个<span class="editer" sex="女">内容</span></li>
+    <li name="李四"   age="18">第一个<span class="editer" sex="女">测试2</span></li>
+    <li name="王五"   age="29">第一个<span class="editer" sex="男">测试3</span></li>
+    <li name="张三"   age="21">第一个<span class="editer" sex="男">测试5</span></li>
+    <li name="张三"   age="89">第一个<span class="editer" sex="男">测试56</span></li>
+  </ul>
+  <script>
+  $("#ul>li").on("tap",function(event) {
+    debugger;
+    var target = event.target;
+    console.log(target);  // 看看target是什么，当前点击事件触发的node
+
+    if(target.className =="editer") {
+      var sex = $(target).attr("sex");
+      alert(sex);
+      alert($(target).html());
+      return;   // 你思考一下为什么加 return   ，不加会怎么样
+    }
+
+    var name = $(target).attr("name");
+    alert(name);
+  });
+  </script>
+</body>
+</html>
